@@ -31,7 +31,7 @@ class CollectionTest extends TestCase
         $collection = new Collection($this->sampleData);
         $i = 1;
         /** @noinspection PhpUnusedLocalVariableInspection */
-        foreach ($collection as $item) {
+        foreach ($collection as $key => $item) {
             $i++;
         }
         $this->assertSame(
@@ -51,7 +51,7 @@ class CollectionTest extends TestCase
         );
     }
 
-    public function testArrayAccess()
+    public function testArrayAccessGet()
     {
         $collection = new Collection($this->sampleData);
         $message = "Collection can't be accessed as an array or got " .
@@ -61,5 +61,35 @@ class CollectionTest extends TestCase
         $this->assertSame(true, $collection[2], $message);
         $this->assertSame(false, $collection[3], $message);
         $this->assertSame(null, $collection[4], $message);
+    }
+
+    public function testArrayAccessUnset()
+    {
+        $collection = new Collection($this->sampleData);
+        unset($collection[4]);
+        $expectedSize = count($this->sampleData) - 1;
+        $this->assertSame($expectedSize, count($collection));
+    }
+
+    public function testArrayAccessAddNew()
+    {
+        $collection = new Collection($this->sampleData);
+        $collection[] = 'new item';
+        $newKey = count($this->sampleData); // +1 for new key, -1 because 0-indexed
+        $this->assertSame('new item', $collection[$newKey]);
+    }
+
+    public function testArrayAccessReplace()
+    {
+        $collection = new Collection($this->sampleData);
+        $collection[0] = 'replaced item';
+        $this->assertSame('replaced item', $collection[0]);
+    }
+
+    public function testArrayAccessOffsetExists()
+    {
+        $collection = new Collection([1]);
+        $this->assertTrue(isset($collection[0]));
+        $this->assertFalse(isset($collection[2]));
     }
 }
