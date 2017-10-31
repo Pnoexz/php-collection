@@ -37,7 +37,28 @@ class CollectionTest extends TestCase
         $this->assertSame(
             count($this->sampleData),
             $i,
-            'Number of items looped through does not match size of sample data'
+            'Number of items looped through does not match size of sample data.'
         );
+    }
+
+    public function testCountable()
+    {
+        $collection = new Collection($this->sampleData);
+        $this->assertSame(
+            count($this->sampleData),
+            count($collection),
+            'Value returned by count() does not match size of sample data.'
+        );
+    }
+
+    public function testArrayAccess()
+    {
+        $collection = new Collection($this->sampleData);
+        $message = "Collection can't be accessed as an array";
+        $this->assertSame('string', $collection[0]);
+        $this->assertSame(4,        $collection[1]);
+        $this->assertSame(true,     $collection[2]);
+        $this->assertSame(false,    $collection[3]);
+        $this->assertSame(null,     $collection[4]);
     }
 }
