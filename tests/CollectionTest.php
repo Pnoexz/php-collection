@@ -54,11 +54,12 @@ class CollectionTest extends TestCase
     public function testArrayAccess()
     {
         $collection = new Collection($this->sampleData);
-        $message = "Collection can't be accessed as an array";
-        $this->assertSame('string', $collection[0]);
-        $this->assertSame(4,        $collection[1]);
-        $this->assertSame(true,     $collection[2]);
-        $this->assertSame(false,    $collection[3]);
-        $this->assertSame(null,     $collection[4]);
+        $message = "Collection can't be accessed as an array or got " .
+            "different data from sample data";
+        $this->assertSame('string', $collection[0], $message);
+        $this->assertSame(4, $collection[1], $message);
+        $this->assertSame(true, $collection[2], $message);
+        $this->assertSame(false, $collection[3], $message);
+        $this->assertSame(null, $collection[4], $message);
     }
 }

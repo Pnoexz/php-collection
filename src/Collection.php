@@ -11,10 +11,10 @@ class Collection implements
     \Countable,
     \ArrayAccess
 {
-    /** @var array  */
+    /** @var array */
     protected $data = [];
 
-    /** @var int  */
+    /** @var int */
     protected $position =  0;
 
     /**
