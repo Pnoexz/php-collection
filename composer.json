@@ -1,5 +1,5 @@
 {
-    "name": "pnoexz/collection",
+    "name": "pnoexz/php-collection",
     "type": "library",
     "license": "GPL 3.0",
     "require-dev": {
