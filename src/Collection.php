@@ -51,6 +51,14 @@ class Collection implements
         }
     }
 
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return $this->data;
+    }
+
     /***************************************************************************
      * Iterator interface
      **************************************************************************/
