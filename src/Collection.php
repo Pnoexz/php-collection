@@ -28,6 +28,29 @@ class Collection implements
         }
     }
 
+    /**
+     * @param string|int $key
+     * @return bool
+     */
+    public function hasKey($key)
+    {
+        return isset($this->data[$key]);
+    }
+
+    /**
+     * @param string|int $key
+     * @param null       $default
+     * @return mixed|null
+     */
+    public function get($key, $default = null)
+    {
+        if ($this->hasKey($key)) {
+            return $this->data[$key];
+        } else {
+            return $default;
+        }
+    }
+
     /***************************************************************************
      * Iterator interface
      **************************************************************************/
